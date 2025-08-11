@@ -1,32 +1,43 @@
-import { Button } from "@/components/ui/button"
+"use client";
+
+import { Button } from "@/components/ui/button"; // Ensure this is correct
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BookOpen, Users, Phone, Mail, MapPin, Star, HandHeart, ScrollText, UserCheck, Calendar, Clock, Award, Globe, Share2, Facebook, Instagram, Youtube, ExternalLink, GraduationCap, ChurchIcon as Mosque, Heart } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 import { FloatingDonateButton } from "@/components/floating-donate-button"
 import { ContactForm } from "@/components/contact-form"
-import { DonationForm } from "@/components/donation-form"
-import { IslamicLogo } from "@/components/islamic-logo"
+import { DonationForm } from "@/components/donation-form";
+import { useState, useRef } from "react"
+import { IslamicLogo } from "@/components/islamic-logo";
+
 
 export default function IslamicWebsite() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Move useState inside the component
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-turquoise-50 font-sans">
+    <div> {/* Wrap all content in a single div */}
       <FloatingDonateButton />
 
       {/* Header */}
-      <header className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-turquoise-700 text-white shadow-2xl sticky top-0 z-40">
+      
+      <header className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-turquoise-700 text-white shadow-2xl sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap">
+            {/* Logo and Institution Name */}
             <div className="flex items-center space-x-4">
-              <IslamicLogo size="large" />
+              <Link href="/">
+                <IslamicLogo size="large" />
+              </Link>
               <div>
                 <h1 className="text-2xl font-bold">Darul Uloom</h1>
                 <p className="text-sm text-emerald-200">Gulshane Qadriya Chishtiya Roon</p>
               </div>
             </div>
 
-            <nav className="hidden lg:flex space-x-8">
-              {["Home", "About", "Courses", "Fatwa", "Donation", "Contact"].map((item) => (
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex space-x-4 md:space-x-8 mt-4 lg:mt-0">
+              {["Home", "About", "Courses", "Fatwa", "Donation", "Contact","Gallery"].map((item) => (
                 <Link
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -38,16 +49,62 @@ export default function IslamicWebsite() {
               ))}
             </nav>
 
-            <Button variant="outline" className="lg:hidden text-emerald-800 border-white bg-white/90 hover:bg-white">
-              Menu
+            {/* Mobile Menu Button */}
+            <Button
+              variant="outline"
+              className="lg:hidden text-emerald-800 border-white bg-white/90 hover:bg-white mt-4 lg:mt-0"
+              onClick={() => setIsMenuOpen(!isMenuOpen)} // Toggle menu visibility on click
+            >
+              {isMenuOpen ? (
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                "Menu"
+              )}
             </Button>
+
+            {/* Mobile Menu */}
+            {isMenuOpen && (
+              <div className="absolute top-full left-0 w-full bg-emerald-800/95 backdrop-blur-md lg:hidden transition-transform duration-300 ease-in-out translate-y-0">
+                <nav className="flex flex-col items-center space-y-4 py-4">
+                  {["Home", "About", "Courses", "Fatwa", "Donation", "Contact","Gallery"].map((item) => (
+                    <Link
+                      key={item}
+                      href={`#${item.toLowerCase()}`}
+                      className="text-white text-lg hover:text-yellow-300 transition-colors"
+                    >
+                      {item}
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+            )}
           </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="absolute top-full left-0 w-full bg-emerald-800/95 backdrop-blur-md lg:hidden transition-transform duration-300 ease-in-out translate-y-0">
+              <nav className="flex flex-col items-center space-y-4 py-4">
+                {["Home", "About", "Courses", "Fatwa", "Donation", "Contact", "Gallery"].map((item) => (
+                  <Link
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    className="text-white text-lg hover:text-yellow-300 transition-colors"
+                    onClick={() => setIsMenuOpen(false)} // Close menu on link click
+                  >
+                    {item}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          )}
         </div>
       </header>
 
       {/* Hero Section */}
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden islamic-pattern">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0">
           <Image
             src="/images/hero-madrasa.png"
             alt="Darul Uloom Madrasa Building"
@@ -59,7 +116,7 @@ export default function IslamicWebsite() {
 
         <div className="relative z-10 text-center text-white px-4 max-w-5xl fade-in-up">
           <div className="mb-8">
-            <Star className="w-12 h-12 text-yellow-400 mx-auto mb-6 animate-pulse" />
+            <Star className="w-10 h-10 md:w-12 md:h-12 text-yellow-400 mx-auto mb-6 animate-pulse" />
           </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
             Nurturing Knowledge,
@@ -71,24 +128,24 @@ export default function IslamicWebsite() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-            <div className="bg-white/10 backdrop-blur rounded-lg p-6 hover-lift">
-              <BookOpen className="w-8 h-8 text-yellow-400 mx-auto mb-3" />
+            <div className="bg-white/10 backdrop-blur rounded-lg p-4 md:p-6 hover-lift">
+              <BookOpen className="w-7 h-7 md:w-8 md:h-8 text-yellow-400 mx-auto mb-3" />
               <h3 className="font-semibold text-lg mb-2">Islamic Education</h3>
               <p className="text-sm text-emerald-200">Traditional Sunni-style Ilm</p>
             </div>
-            <div className="bg-white/10 backdrop-blur rounded-lg p-6 hover-lift">
-              <ScrollText className="w-8 h-8 text-yellow-400 mx-auto mb-3" />
+            <div className="bg-white/10 backdrop-blur rounded-lg p-4 md:p-6 hover-lift">
+              <ScrollText className="w-7 h-7 md:w-8 md:h-8 text-yellow-400 mx-auto mb-3" />
               <h3 className="font-semibold text-lg mb-2">Fatwa Service</h3>
               <p className="text-sm text-emerald-200">Ask your daily Fiqh questions</p>
             </div>
-            <div className="bg-white/10 backdrop-blur rounded-lg p-6 hover-lift">
-              <HandHeart className="w-8 h-8 text-yellow-400 mx-auto mb-3" />
+            <div className="bg-white/10 backdrop-blur rounded-lg p-4 md:p-6 hover-lift">
+              <HandHeart className="w-7 h-7 md:w-8 md:h-8 text-yellow-400 mx-auto mb-3" />
               <h3 className="font-semibold text-lg mb-2">Zakat/Sadaqah</h3>
               <p className="text-sm text-emerald-200">Spend in the path of Allah</p>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
             <Button
               size="lg"
               className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-10 py-4 text-lg font-semibold shadow-2xl hover-lift"
@@ -108,10 +165,10 @@ export default function IslamicWebsite() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-gradient-to-b from-white to-emerald-50">
+      <section id="about" className="py-16 md:py-24 bg-gradient-to-b from-white to-emerald-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20 fade-in-up">
-            <h2 className="text-5xl font-bold text-emerald-800 mb-6">About Our Institution</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-emerald-800 mb-6">About Our Institution</h2>
             <div className="w-32 h-1.5 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
               A beacon of authentic Islamic education rooted in the blessed traditions of our pious predecessors
@@ -131,7 +188,7 @@ export default function IslamicWebsite() {
 
             <div className="space-y-8 fade-in-up">
               <div>
-                <h3 className="text-3xl font-bold text-emerald-800 mb-4">Molana Arbab Badmeri</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-emerald-800 mb-4">Molana Arbab Badmeri</h3>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
                   Founded and directed by the esteemed Molana Arbab Badmeri, our Darul Uloom stands as a testament to
                   authentic Islamic scholarship. With decades of experience in Islamic jurisprudence and spiritual
@@ -144,7 +201,7 @@ export default function IslamicWebsite() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <Card className="card-peaceful hover-lift border-emerald-200">
                   <CardContent className="p-6 text-center">
                     <Award className="w-10 h-10 text-emerald-600 mx-auto mb-3" />
@@ -166,7 +223,7 @@ export default function IslamicWebsite() {
 
           {/* Madrasa Building Showcase */}
           <div className="mb-20">
-            <h3 className="text-3xl font-bold text-emerald-800 mb-8 text-center">Our Sacred Campus</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-emerald-800 mb-8 text-center">Our Sacred Campus</h3>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="relative group overflow-hidden rounded-2xl shadow-xl hover-lift">
                 <Image
@@ -177,7 +234,7 @@ export default function IslamicWebsite() {
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-6 left-6 right-6">
+                  <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6">
                     <h4 className="text-white font-semibold text-xl mb-2">Main Academic Building</h4>
                     <p className="text-emerald-200 text-sm">Where knowledge and faith unite</p>
                   </div>
@@ -192,7 +249,7 @@ export default function IslamicWebsite() {
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-6 left-6 right-6">
+                  <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6">
                     <h4 className="text-white font-semibold text-xl mb-2">Study Courtyard</h4>
                     <p className="text-emerald-200 text-sm">Peaceful environment for learning</p>
                   </div>
@@ -203,7 +260,7 @@ export default function IslamicWebsite() {
 
           {/* Timeline */}
           <div className="bg-white rounded-2xl p-8 shadow-xl hover-lift">
-            <h3 className="text-2xl font-bold text-emerald-800 mb-8 text-center">Our Journey</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-emerald-800 mb-8 text-center">Our Journey</h3>
             <div className="grid md:grid-cols-4 gap-8">
               {[
                 { year: "1998", event: "Foundation", desc: "Darul Uloom established" },
@@ -213,7 +270,7 @@ export default function IslamicWebsite() {
               ].map((milestone, index) => (
                 <div key={index} className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-turquoise-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Calendar className="w-8 h-8 text-white" />
+                    <Calendar className="w-7 h-7 md:w-8 md:h-8 text-white" />
                   </div>
                   <h4 className="font-bold text-emerald-800 text-lg">{milestone.year}</h4>
                   <h5 className="font-semibold text-gray-800 mb-2">{milestone.event}</h5>
@@ -226,10 +283,10 @@ export default function IslamicWebsite() {
       </section>
 
       {/* Islamic Services Section */}
-      <section id="courses" className="py-24 bg-gradient-to-b from-emerald-50 to-turquoise-50 islamic-pattern">
+      <section id="courses" className="py-16 md:py-24 bg-gradient-to-b from-emerald-50 to-turquoise-50 islamic-pattern">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20 fade-in-up">
-            <h2 className="text-5xl font-bold text-emerald-800 mb-6">Our Islamic Services</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-emerald-800 mb-6">Our Islamic Services</h2>
             <div className="w-32 h-1.5 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
               Comprehensive Islamic education and spiritual guidance rooted in authentic scholarship
@@ -273,7 +330,7 @@ export default function IslamicWebsite() {
                     className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg`}
                   >
                     <service.icon className="w-8 h-8 text-white" />
-                  </div>
+                  </div> 
                   <CardTitle className="text-emerald-800 text-xl">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -290,12 +347,12 @@ export default function IslamicWebsite() {
         id="donation"
         className="py-24 bg-gradient-to-br from-emerald-800 via-emerald-700 to-turquoise-700 text-white relative overflow-hidden"
       >
-        <div className="absolute inset-0 islamic-pattern opacity-10"></div>
+        <div className="absolute inset-0 islamic-pattern opacity-5 md:opacity-10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16 fade-in-up">
-            <HandHeart className="w-20 h-20 text-yellow-400 mx-auto mb-8" />
-            <h2 className="text-5xl font-bold mb-6">Support Our Mission</h2>
-            <p className="text-2xl text-emerald-100 max-w-4xl mx-auto leading-relaxed">
+            <HandHeart className="w-16 h-16 md:w-20 md:h-20 text-yellow-400 mx-auto mb-8" />
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">Support Our Mission</h2>
+            <p className="text-lg md:text-2xl text-emerald-100 max-w-4xl mx-auto leading-relaxed">
               Your Zakat and Sadaqah help us provide free Islamic education, meals for students, and preserve the
               beautiful tradition of Islamic scholarship for future generations.
             </p>
@@ -308,10 +365,10 @@ export default function IslamicWebsite() {
       </section>
 
       {/* Gallery Section */}
-      <section className="py-24 bg-gradient-to-b from-white to-emerald-50">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-white to-emerald-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20 fade-in-up">
-            <h2 className="text-5xl font-bold text-emerald-800 mb-6">Our Institution Gallery</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-emerald-800 mb-6">Our Institution Gallery</h2>
             <div className="w-32 h-1.5 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Witness the beauty of Islamic education and community spirit through our activities
@@ -366,7 +423,7 @@ export default function IslamicWebsite() {
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-6 left-6 right-6">
+                  <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6">
                     <h3 className="text-white font-semibold text-lg mb-2">{item.title}</h3>
                     <Button
                       size="sm"
@@ -385,10 +442,10 @@ export default function IslamicWebsite() {
       </section>
 
       {/* Student Life Section */}
-      <section className="py-24 bg-gradient-to-b from-emerald-50 to-turquoise-50 islamic-pattern">
+      <section className="py-16 md:py-24 bg-gradient-to-b from-emerald-50 to-turquoise-50 islamic-pattern">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20 fade-in-up">
-            <h2 className="text-5xl font-bold text-emerald-800 mb-6">Student Life at Our Madrasa</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-emerald-800 mb-6">Student Life at Our Madrasa</h2>
             <div className="w-32 h-1.5 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Experience the daily rhythm of Islamic learning and spiritual growth
@@ -478,10 +535,10 @@ export default function IslamicWebsite() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-gradient-to-b from-emerald-50 to-white">
+      <section id="contact" className="py-16 md:py-24 bg-gradient-to-b from-emerald-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20 fade-in-up">
-            <h2 className="text-5xl font-bold text-emerald-800 mb-6">Get In Touch</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-emerald-800 mb-6">Get In Touch</h2>
             <div className="w-32 h-1.5 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Connect with us for admissions, religious guidance, or any inquiries about our programs
@@ -511,7 +568,7 @@ export default function IslamicWebsite() {
                     <br />
                     India
                   </p>
-                  <div className="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
+                  <div className="bg-gray-200 rounded-lg h-40 md:h-48 flex items-center justify-center">
                     <div className="text-center">
                       <Mosque className="w-12 h-12 text-gray-500 mx-auto mb-2" />
                       <p className="text-gray-600">Interactive Map Coming Soon</p>
@@ -520,7 +577,7 @@ export default function IslamicWebsite() {
                 </CardContent>
               </Card>
 
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <Card className="card-peaceful hover-lift border-emerald-200">
                   <CardContent className="p-6 text-center">
                     <Phone className="w-8 h-8 text-emerald-600 mx-auto mb-3" />
@@ -583,7 +640,7 @@ export default function IslamicWebsite() {
       {/* Footer */}
       <footer className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-turquoise-800 text-white py-20">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-12 mb-16">
+          <div className="grid md:grid-cols-4 gap-8 md:gap-12 mb-16">
             <div className="md:col-span-2">
               <div className="flex items-center space-x-4 mb-8">
                 <IslamicLogo size="large" />
@@ -596,7 +653,7 @@ export default function IslamicWebsite() {
                 Dedicated to preserving authentic Islamic knowledge and nurturing the spiritual growth of our Ummah
                 through traditional Sunni education and contemporary guidance.
               </p>
-              <div className="flex space-x-4">
+              <div className="flex flex-wrap gap-4">
                 <Button
                   size="sm"
                   variant="outline"
@@ -626,7 +683,7 @@ export default function IslamicWebsite() {
 
             <div>
               <h4 className="text-xl font-semibold mb-6">Quick Links</h4>
-              <div className="space-y-3">
+              <div className="space-y-2 md:space-y-3">
                 {[
                   "About Us",
                   "Admission Process",
@@ -644,7 +701,7 @@ export default function IslamicWebsite() {
 
             <div>
               <h4 className="text-xl font-semibold mb-6">Our Services</h4>
-              <div className="space-y-3">
+              <div className="space-y-2 md:space-y-3">
                 {[
                   "Hifz-ul-Quran",
                   "Alim Course",
@@ -678,7 +735,7 @@ export default function IslamicWebsite() {
               </div>
 
               <div className="flex flex-col md:flex-row justify-between items-center">
-                <p className="text-emerald-300 mb-4 md:mb-0">
+                <p className="text-emerald-300 text-sm md:text-base mb-4 md:mb-0">
                   © 2024 Darul Uloom Gulshane Qadriya Chishtiya Roon. All rights reserved.
                 </p>
                 <div className="flex items-center space-x-4">

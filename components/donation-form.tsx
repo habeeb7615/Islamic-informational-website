@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import Image from "next/image"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -12,20 +13,12 @@ import { Textarea } from "@/components/ui/textarea"
 import { Heart, CreditCard, Smartphone } from "lucide-react"
 
 export function DonationForm() {
-  const [donationAmount, setDonationAmount] = useState("")
+  const [donationAmount, setDonationAmount] = useState<string>("")
   const [donationPurpose, setDonationPurpose] = useState("")
   const [isProcessing, setIsProcessing] = useState(false)
 
-  const handleDonation = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsProcessing(true)
-
-    // Simulate payment processing
-    setTimeout(() => {
-      setIsProcessing(false)
-      // Here you would integrate with Razorpay or other payment gateway
-      alert("JazakAllah Khair! Your donation has been processed successfully.")
-    }, 2000)
   }
 
   const quickAmounts = [500, 1000, 2500, 5000, 10000]
@@ -42,7 +35,7 @@ export function DonationForm() {
         </CardDescription>
       </CardHeader>
       <CardContent className="p-6 space-y-6">
-        <form onSubmit={handleDonation} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="donor-name" className="text-emerald-800 font-semibold">
@@ -135,23 +128,19 @@ export function DonationForm() {
             />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <Button
-              type="submit"
-              disabled={isProcessing}
-              className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-semibold py-3"
-            >
-              <CreditCard className="w-5 h-5 mr-2" />
-              {isProcessing ? "Processing..." : "Pay with Card"}
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              className="border-turquoise-500 text-turquoise-700 hover:bg-turquoise-50 font-semibold py-3 bg-transparent"
-            >
-              <Smartphone className="w-5 h-5 mr-2" />
-              UPI Payment
-            </Button>
+          {/* UPI Payment Section */}
+          <div className="text-center space-y-4">
+            <p className="text-emerald-800 text-lg font-semibold">Pay with UPI</p>
+            <div className="flex justify-center">
+              {/* Replace with your actual UPI QR Code image */}
+              <Image src="/placeholder.jpg" alt="UPI QR Code" width={200} height={200} />
+            </div>
+            <p className="text-emerald-700 text-sm">Scan the QR code with your UPI app to donate.</p>
+            {/* You can also add a UPI ID here if needed */}
+            <p className="text-emerald-700 text-sm font-medium">UPI ID: your_upi_id@bank</p> {/* Replace with your UPI ID */}
+          </div>
+
+          <div>
           </div>
 
           <div className="text-center bg-emerald-50 p-4 rounded-lg">

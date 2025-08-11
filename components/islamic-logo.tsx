@@ -1,9 +1,17 @@
 "use client"
 
 import Image from "next/image"
+import { useMemo } from "react";
 
-export function IslamicLogo({ size = "large" }: { size?: "small" | "large" }) {
-  const logoSize = size === "large" ? "w-16 h-16" : "w-12 h-12"
+export function IslamicLogo({ size = "large" }: { size?: "small" | "medium" | "large" }) {
+  const logoSize = useMemo(() => {
+    if (size === 'small') {
+ return 'w-16 h-16'; // 16x16
+    } else if (size === 'medium') {
+ return 'w-24 h-24'; // 24x24
+    }
+ return 'w-32 h-32'; // 32x32 for large (default)
+  }, [size]);
 
   return (
     <div className={`relative ${logoSize} hover:scale-105 transition-transform duration-300`}>
