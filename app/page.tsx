@@ -1,6 +1,30 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { BookOpen, Users, Phone, Mail, MapPin, Star, HandHeart, ScrollText, UserCheck, Calendar, Clock, Award, Globe, Share2, Facebook, Instagram, Youtube, ExternalLink, GraduationCap, ChurchIcon as Mosque, Heart } from 'lucide-react'
+import {
+  BookOpen,
+  Users,
+  Phone,
+  Mail,
+  MapPin,
+  Star,
+  HandHeart,
+  ScrollText,
+  UserCheck,
+  Calendar,
+  Clock,
+  Award,
+  Globe,
+  Share2,
+  Facebook,
+  Instagram,
+  Youtube,
+  ExternalLink,
+  ChurchIcon as Mosque,
+  Heart,
+} from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { FloatingDonateButton } from "@/components/floating-donate-button"
@@ -9,36 +33,67 @@ import { DonationForm } from "@/components/donation-form"
 import { IslamicLogo } from "@/components/islamic-logo"
 
 export default function IslamicWebsite() {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-turquoise-50 font-sans">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-turquoise-50 font-inter">
       <FloatingDonateButton />
 
-      {/* Header */}
-      <header className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-turquoise-700 text-white shadow-2xl sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-4">
+      {/* Compact Header with Scroll Effects */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? "bg-white/95 backdrop-blur-md shadow-lg py-2"
+            : "bg-gradient-to-r from-emerald-800 via-emerald-700 to-turquoise-700 py-3"
+        }`}
+      >
+        <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <IslamicLogo size="large" />
-              <div>
-                <h1 className="text-2xl font-bold">Darul Uloom</h1>
-                <p className="text-sm text-emerald-200">Gulshane Qadriya Chishtiya Roon</p>
+            <div className="flex items-center space-x-3">
+              <IslamicLogo size="small" />
+              <div className={`transition-colors duration-300 ${isScrolled ? "text-emerald-800" : "text-white"}`}>
+                <h1 className="text-lg font-bold">Darul Uloom</h1>
+                {!isScrolled && <p className="text-xs text-emerald-200">Gulshane Qadriya Chishtiya Roon</p>}
               </div>
             </div>
 
-            <nav className="hidden lg:flex space-x-8">
-              {["Home", "About", "Courses", "Fatwa", "Donation", "Contact"].map((item) => (
+            <nav className="hidden lg:flex space-x-6">
+              {["Home", "About", "Our Courses", "Fatwa", "Gallery", "Donation", "Contact"].map((item) => (
                 <Link
                   key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="hover:text-yellow-300 transition-all duration-300 font-semibold relative group"
+                  href={item === "Gallery" ? "/gallery" : `#${item.toLowerCase().replace(" ", "")}`}
+                  className={`transition-all duration-300 font-medium relative group ${
+                    isScrolled ? "text-emerald-800 hover:text-emerald-600" : "text-white hover:text-yellow-300"
+                  }`}
                 >
                   {item}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
+                  <span
+                    className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${
+                      isScrolled ? "bg-emerald-600" : "bg-yellow-400"
+                    }`}
+                  ></span>
                 </Link>
               ))}
             </nav>
 
-            <Button variant="outline" className="lg:hidden text-emerald-800 border-white bg-white/90 hover:bg-white">
+            <Button
+              variant="outline"
+              size="sm"
+              className={`lg:hidden transition-colors duration-300 ${
+                isScrolled
+                  ? "text-emerald-800 border-emerald-800 hover:bg-emerald-50"
+                  : "text-white border-white hover:bg-white hover:text-emerald-800"
+              }`}
+            >
               Menu
             </Button>
           </div>
@@ -49,8 +104,8 @@ export default function IslamicWebsite() {
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden islamic-pattern">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-madrasa.png"
-            alt="Darul Uloom Madrasa Building"
+            src="/images/hero-main-gathering.png"
+            alt="Darul Uloom Community Gathering - Students and Faculty"
             fill
             className="object-cover"
           />
@@ -226,7 +281,7 @@ export default function IslamicWebsite() {
       </section>
 
       {/* Islamic Services Section */}
-      <section id="courses" className="py-24 bg-gradient-to-b from-emerald-50 to-turquoise-50 islamic-pattern">
+      <section id="ourcourses" className="py-24 bg-gradient-to-b from-emerald-50 to-turquoise-50 islamic-pattern">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20 fade-in-up">
             <h2 className="text-5xl font-bold text-emerald-800 mb-6">Our Islamic Services</h2>
@@ -307,15 +362,21 @@ export default function IslamicWebsite() {
         </div>
       </section>
 
-      {/* Gallery Section */}
+      {/* Gallery Preview Section */}
       <section className="py-24 bg-gradient-to-b from-white to-emerald-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20 fade-in-up">
             <h2 className="text-5xl font-bold text-emerald-800 mb-6">Our Institution Gallery</h2>
             <div className="w-32 h-1.5 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto mb-8"></div>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
               Witness the beauty of Islamic education and community spirit through our activities
             </p>
+            <Link href="/gallery">
+              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3">
+                View Full Gallery
+                <ExternalLink className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -344,18 +405,6 @@ export default function IslamicWebsite() {
                 title: "Annual Graduation Ceremony",
                 image: "/images/graduation-ceremony.png",
               },
-              {
-                title: "Madrasa Kitchen & Dining",
-                image: "/images/kitchen-dining.png",
-              },
-              {
-                title: "Morning Assembly",
-                image: "/images/morning-assembly.png",
-              },
-              {
-                title: "Calligraphy Class",
-                image: "/images/calligraphy-class.png",
-              },
             ].map((item, index) => (
               <div key={index} className="relative group overflow-hidden rounded-2xl shadow-xl hover-lift">
                 <Image
@@ -363,6 +412,7 @@ export default function IslamicWebsite() {
                   alt={item.title}
                   width={600}
                   height={400}
+                  loading="lazy"
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
