@@ -35,7 +35,9 @@ import { MobileMenu } from "@/components/mobile-menu"
 
 export default function IslamicWebsite() {
   const [isScrolled, setIsScrolled] = useState(false)
-
+  const scrollToDonation = () => {
+    document.getElementById("donation")?.scrollIntoView({ behavior: "smooth" })
+  }
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
@@ -139,7 +141,7 @@ export default function IslamicWebsite() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center max-w-md sm:max-w-none mx-auto">
-            <Button
+            <Button onClick={scrollToDonation}
               size="lg"
               className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-6 md:px-10 py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold shadow-2xl hover-lift h-12 sm:h-auto"
             >
