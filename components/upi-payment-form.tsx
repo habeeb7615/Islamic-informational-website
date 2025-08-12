@@ -10,7 +10,6 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { Heart, Smartphone, Download, CheckCircle, QrCode } from "lucide-react"
-import jsPDF from "jspdf"
 
 interface PaymentData {
   name: string
@@ -46,57 +45,167 @@ export function UpiPaymentForm() {
   }
 
   const generateTransactionId = () => {
-    return `TXN${Date.now()}${Math.random().toString(36).substr(2, 9).toUpperCase()}`
+    return `DU-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`
   }
 
   const generatePaymentId = () => {
     return `PAY${Date.now()}${Math.random().toString(36).substr(2, 6).toUpperCase()}`
   }
 
-  const generatePDFReceipt = (result: PaymentResult) => {
-    const doc = new jsPDF()
-
-    // Header
-    doc.setFontSize(20)
-    doc.setTextColor(16, 185, 129)
-    doc.text("Darul Uloom Gulshane Qadriya Chishtiya Roon", 20, 30)
-
-    doc.setFontSize(16)
-    doc.setTextColor(0, 0, 0)
-    doc.text("Payment Receipt", 20, 50)
-
-    // Receipt Details
-    doc.setFontSize(12)
-    const details = [
-      `Transaction ID: ${result.transactionId}`,
-      `Payment ID: ${result.paymentId}`,
-      `Payer Name: ${formData.name}`,
-      `Contact: ${formData.contact}`,
-      `Amount Paid: ₹${formData.amount}`,
-      `Purpose: ${formData.purpose}`,
-      `Date & Time: ${new Date(result.timestamp).toLocaleString("en-IN")}`,
-      `Payment Method: UPI`,
-      `Status: Successful`,
-    ]
-
-    let yPosition = 70
-    details.forEach((detail) => {
-      doc.text(detail, 20, yPosition)
-      yPosition += 10
-    })
-
-    if (formData.message) {
-      doc.text(`Message: ${formData.message}`, 20, yPosition + 10)
+  const generateHTMLReceipt = (result: PaymentResult) => {
+    const receiptHTML = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Donation Receipt</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        background: #f4f4f4;
+        margin: 0;
+        padding: 20px;
     }
+    .receipt-container {
+        max-width: 700px;
+        background: #fff;
+        margin: auto;
+        padding: 0;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .receipt-header {
+        background: linear-gradient(135deg, #1abc9c, #16a085);
+        text-align: center;
+        padding: 20px;
+        color: #fff;
+    }
+    .receipt-header img {
+        max-height: 70px;
+        margin-bottom: 8px;
+    }
+    .receipt-header h1 {
+        margin: 5px 0;
+        font-size: 24px;
+        color: #fff;
+    }
+    .receipt-header p {
+        font-size: 14px;
+        color: #e0f2f1;
+    }
+    .content {
+        padding: 30px;
+    }
+    .receipt-details {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    .receipt-details td {
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+    .thank-you {
+        background: #e6f4ea;
+        padding: 15px;
+        text-align: center;
+        border-radius: 6px;
+        font-size: 16px;
+        color: #2b6e42;
+    }
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin: 15px 0;
+        padding-bottom: 10px;
+    }
+    @media print {
+        body { background: white; padding: 0; }
+        .receipt-container { box-shadow: none; }
+    }
+</style>
+</head>
+<body>
 
-    // Footer
-    doc.setFontSize(10)
-    doc.setTextColor(100, 100, 100)
-    doc.text("Thank you for your generous donation. May Allah accept your charity.", 20, 250)
-    doc.text("This is a computer-generated receipt.", 20, 260)
+<div class="receipt-container">
+    <div class="receipt-header">
+        <h1>Darul Uloom Gulshane Qadriya Chishtiya Roon</h1>
+        <p>Donation Receipt</p>
+    </div>
 
-    // Download the PDF
-    doc.save(`Receipt_${result.transactionId}.pdf`)
+    <div class="content">
+        <table class="receipt-details">
+            <tr>
+                <td><strong>Receipt No:</strong></td>
+                <td>${result.transactionId}</td>
+            </tr>
+            <tr>
+                <td><strong>Date:</strong></td>
+                <td>${new Date(result.timestamp).toLocaleDateString("en-IN")}</td>
+            </tr>
+            <tr>
+                <td><strong>Donor Name:</strong></td>
+                <td>${formData.name}</td>
+            </tr>
+            <tr>
+                <td><strong>Contact:</strong></td>
+                <td>${formData.contact}</td>
+            </tr>
+            <tr>
+                <td><strong>Amount Donated:</strong></td>
+                <td>₹${formData.amount}</td>
+            </tr>
+            <tr>
+                <td><strong>Payment Method:</strong></td>
+                <td>UPI</td>
+            </tr>
+            <tr>
+                <td><strong>Payment ID:</strong></td>
+                <td>${result.paymentId}</td>
+            </tr>
+            <tr>
+                <td><strong>Purpose:</strong></td>
+                <td>${formData.purpose}</td>
+            </tr>
+            ${
+              formData.message
+                ? `
+            <tr>
+                <td><strong>Message:</strong></td>
+                <td>${formData.message}</td>
+            </tr>
+            `
+                : ""
+            }
+        </table>
+
+        <div class="thank-you">
+            Thank you for your generous contribution. Your support helps us continue our mission of Islamic education. May Allah accept your charity and multiply your rewards.
+        </div>
+    </div>
+
+    <div class="footer">
+        This receipt is generated electronically and does not require a signature.<br>
+        © ${new Date().getFullYear()} Darul Uloom Gulshane Qadriya Chishtiya Roon
+    </div>
+</div>
+
+</body>
+</html>
+    `
+
+    const newWindow = window.open("", "_blank")
+    if (newWindow) {
+      newWindow.document.write(receiptHTML)
+      newWindow.document.close()
+
+      // Auto-print after a short delay
+      setTimeout(() => {
+        newWindow.print()
+      }, 500)
+    }
   }
 
   const handleUpiPayment = async (e: React.FormEvent) => {
@@ -119,9 +228,8 @@ export function UpiPaymentForm() {
       setIsProcessing(false)
       setShowQR(false)
 
-      // Auto-generate PDF receipt
       setTimeout(() => {
-        generatePDFReceipt(result)
+        generateHTMLReceipt(result)
       }, 1000)
     }, 3000)
   }
@@ -169,7 +277,7 @@ export function UpiPaymentForm() {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Button
-              onClick={() => generatePDFReceipt(paymentResult)}
+              onClick={() => generateHTMLReceipt(paymentResult)}
               className="flex-1 bg-emerald-600 hover:bg-emerald-700"
             >
               <Download className="w-4 h-4 mr-2" />
