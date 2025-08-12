@@ -262,6 +262,12 @@ const galleryImages = [
     title: "Independence Day Outdoor Celebration",
     category: "Events",
   },
+  {
+    src: "/images/molana-arbab-badmeri-authentic.jpg",
+    alt: "Molana Arbab Badmeri - Respected founder and director with white turban and beard",
+    title: "Molana Arbab Badmeri - Founder",
+    category: "Faculty",
+  },
 ]
 
 export default function GalleryPage() {

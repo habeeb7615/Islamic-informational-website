@@ -173,8 +173,8 @@ export default function IslamicWebsite() {
           <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center mb-12 md:mb-20">
             <div className="fade-in-up order-2 lg:order-1">
               <Image
-                src="/images/molana-arbab-badmeri.png"
-                alt="Molana Arbab Badmeri"
+                src="/images/molana-arbab-badmeri-authentic.jpg"
+                alt="Molana Arbab Badmeri - Founder and Director"
                 width={700}
                 height={500}
                 className="rounded-2xl shadow-2xl hover-lift w-full"
@@ -260,9 +260,9 @@ export default function IslamicWebsite() {
             <h3 className="text-xl md:text-2xl font-bold text-emerald-800 mb-6 md:mb-8 text-center">Our Journey</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
               {[
-                { year: "1998", event: "Foundation", desc: "Darul Uloom established" },
-                { year: "2005", event: "Expansion", desc: "New classrooms added" },
-                { year: "2015", event: "Recognition", desc: "Official recognition received" },
+                { year: "2010", event: "Foundation", desc: "Darul Uloom established" },
+                { year: "2015", event: "Expansion", desc: "New classrooms added" },
+                { year: "2020", event: "Recognition", desc: "Official recognition received" },
                 { year: "2024", event: "Growth", desc: "Digital presence launched" },
               ].map((milestone, index) => (
                 <div key={index} className="text-center">
