@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { ArrowLeft, ExternalLink, X } from "lucide-react"
+import { ExternalLink, X } from "lucide-react"
 import { IslamicLogo } from "@/components/islamic-logo"
 import { MobileMenu } from "@/components/mobile-menu"
 
@@ -343,12 +343,6 @@ export default function GalleryPage() {
         {/* Hero Section - Enhanced for Mobile */}
         <section className="py-12 md:py-16 bg-gradient-to-r from-emerald-800 via-emerald-700 to-turquoise-700 text-white">
           <div className="container mx-auto px-4">
-            <div className="flex items-center mb-4 md:mb-6">
-              <Link href="/" className="flex items-center text-emerald-200 hover:text-white transition-colors mr-4">
-                <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
-                <span className="text-sm md:text-base">Back to Home</span>
-              </Link>
-            </div>
             <div className="text-center">
               <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6">Our Gallery</h1>
               <p className="text-lg md:text-xl lg:text-2xl text-emerald-100 max-w-3xl mx-auto px-4">
