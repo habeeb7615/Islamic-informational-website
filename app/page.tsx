@@ -63,16 +63,16 @@ export default function IslamicWebsite() {
             <Link href="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
               <IslamicLogo size="small" />
               <div className={`transition-colors duration-300 ${isScrolled ? "text-emerald-800" : "text-white"}`}>
-                <h1 className="text-base sm:text-lg md:text-xl font-bold">Darul Uloom</h1>
+                <h1 className="text-base sm:text-lg md:text-xl font-bold">Darul Uloom Roon</h1>
                 {!isScrolled && (
-                  <p className="text-xs text-emerald-200 hidden sm:block">Gulshane Qadriya Chishtiya Roon</p>
+                  <p className="text-xs text-emerald-200 hidden sm:block">Gulshane Qadriya Chishtiya</p>
                 )}
               </div>
             </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex space-x-6">
-              {["Home", "About", "Our Courses", "Fatwa", "Gallery", "Donation", "Contact"].map((item) => (
+              {["Home", "About", "Our Courses", "Gallery", "Donation", "Contact"].map((item) => (
                 <Link
                   key={item}
                   href={item === "Gallery" ? "/gallery" : `#${item.toLowerCase().replace(" ", "")}`}
@@ -202,7 +202,7 @@ export default function IslamicWebsite() {
                 <Card className="card-peaceful hover-lift border-emerald-200">
                   <CardContent className="p-4 md:p-6 text-center">
                     <Award className="w-8 h-8 md:w-10 md:h-10 text-emerald-600 mx-auto mb-2 md:mb-3" />
-                    <h4 className="font-semibold text-emerald-800 text-base md:text-lg">25+ Years</h4>
+                    <h4 className="font-semibold text-emerald-800 text-base md:text-lg">15+ Years</h4>
                     <p className="text-xs md:text-sm text-gray-600">Of dedicated service</p>
                   </CardContent>
                 </Card>
@@ -210,7 +210,7 @@ export default function IslamicWebsite() {
                 <Card className="card-peaceful hover-lift border-emerald-200">
                   <CardContent className="p-4 md:p-6 text-center">
                     <Users className="w-8 h-8 md:w-10 md:h-10 text-emerald-600 mx-auto mb-2 md:mb-3" />
-                    <h4 className="font-semibold text-emerald-800 text-base md:text-lg">500+</h4>
+                    <h4 className="font-semibold text-emerald-800 text-base md:text-lg">100+</h4>
                     <p className="text-xs md:text-sm text-gray-600">Students graduated</p>
                   </CardContent>
                 </Card>
@@ -567,9 +567,9 @@ export default function IslamicWebsite() {
                   <p className="text-gray-700 mb-4 text-sm md:text-base">
                     Darul Uloom Gulshane Qadriya Chishtiya Roon
                     <br />
-                    Village Roon, Tehsil Siwana
+                    Village Roon, Tehsil Mundwa
                     <br />
-                    District Barmer, Rajasthan 344044
+                    District Nagaur, Rajasthan 341028
                     <br />
                     India
                   </p>
@@ -595,7 +595,7 @@ export default function IslamicWebsite() {
                   <CardContent className="p-4 md:p-6 text-center">
                     <Mail className="w-6 h-6 md:w-8 md:h-8 text-emerald-600 mx-auto mb-2 md:mb-3" />
                     <h4 className="font-semibold text-emerald-800 mb-1 md:mb-2 text-sm md:text-base">Email</h4>
-                    <p className="text-gray-600 text-xs md:text-sm">info@darululoom-roon.org</p>
+                    <p className="text-gray-600 text-xs md:text-sm">info@darululoomroon.org</p>
                   </CardContent>
                 </Card>
               </div>

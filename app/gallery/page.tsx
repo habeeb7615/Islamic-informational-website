@@ -312,7 +312,7 @@ export default function GalleryPage() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex space-x-6">
-              {["Home", "About", "Our Courses", "Fatwa", "Gallery", "Donation", "Contact"].map((item) => (
+              {["Home", "About", "Our Courses", "Gallery", "Donation", "Contact"].map((item) => (
                 <Link
                   key={item}
                   href={

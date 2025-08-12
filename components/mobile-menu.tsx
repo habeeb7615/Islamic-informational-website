@@ -39,7 +39,7 @@ export function MobileMenu({ isScrolled }: MobileMenuProps) {
     { name: "Home", href: "/" },
     { name: "About", href: "/#about" },
     { name: "Our Courses", href: "/#ourcourses" },
-    { name: "Fatwa", href: "/#fatwa" },
+   
     { name: "Gallery", href: "/gallery" },
     { name: "Donation", href: "/#donation" },
     { name: "Contact", href: "/#contact" },

@@ -226,11 +226,11 @@ export function UpiPaymentForm() {
   return (
     <Card className="bg-white/95 backdrop-blur border-emerald-200 hover-lift">
       <CardHeader className="bg-gradient-to-r from-emerald-600 to-turquoise-600 text-white rounded-t-lg">
-        <CardTitle className="text-center text-xl md:text-2xl font-bold">
-          <Heart className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2" />
+        <CardTitle className="text-center text-xl md:text-2xl font-bold text-black">
+          <Heart className="w-6 h-6 md:w-8 md:h-8 mx-auto mb-2 text-black" />
           Make a Donation
         </CardTitle>
-        <CardDescription className="text-center text-emerald-100">
+        <CardDescription className="text-center text-emerald-100 text-black">
           Your support is Sadaqah Jariyah - a continuous charity
         </CardDescription>
       </CardHeader>
