@@ -49,7 +49,6 @@ export default function IslamicWebsite() {
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-turquoise-50 font-inter">
       <FloatingDonateButton />
 
-      {/* Enhanced Header with Mobile Menu */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
@@ -57,12 +56,12 @@ export default function IslamicWebsite() {
             : "bg-gradient-to-r from-emerald-800 via-emerald-700 to-turquoise-700 py-3"
         }`}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-3">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-16 sm:h-auto">
+            <Link href="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
               <IslamicLogo size="small" />
               <div className={`transition-colors duration-300 ${isScrolled ? "text-emerald-800" : "text-white"}`}>
-                <h1 className="text-lg md:text-xl font-bold">Darul Uloom</h1>
+                <h1 className="text-base sm:text-lg md:text-xl font-bold">Darul Uloom</h1>
                 {!isScrolled && (
                   <p className="text-xs text-emerald-200 hidden sm:block">Gulshane Qadriya Chishtiya Roon</p>
                 )}
@@ -89,71 +88,68 @@ export default function IslamicWebsite() {
               ))}
             </nav>
 
-            {/* Mobile Menu */}
-            <MobileMenu isScrolled={isScrolled} />
+            <div className="lg:hidden">
+              <MobileMenu isScrolled={isScrolled} />
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section - Enhanced for Mobile */}
-      <section
-        id="home"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden islamic-pattern"
-      >
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-main-gathering.png"
-            alt="Darul Uloom Community Gathering - Students and Faculty"
+            src="/images/darul-uloom-authentic-gathering.jpg"
+            alt="Darul Uloom Students and Faculty Gathering"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/80 via-emerald-800/70 to-turquoise-800/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/70 via-emerald-800/60 to-emerald-900/80"></div>
         </div>
 
-        <div className="relative z-10 text-center text-white px-4 max-w-6xl fade-in-up">
-          <div className="mb-6 md:mb-8">
-            <Star className="w-8 h-8 md:w-12 md:h-12 text-yellow-400 mx-auto mb-4 md:mb-6 animate-pulse" />
+        <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-6xl mx-auto fade-in-up">
+          <div className="mb-4 sm:mb-6 md:mb-8">
+            <Star className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 text-yellow-400 mx-auto mb-3 sm:mb-4 md:mb-6 animate-pulse" />
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 md:mb-8 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold mb-4 sm:mb-6 md:mb-8 leading-tight">
             Nurturing Knowledge,
             <br />
             <span className="text-yellow-300">Preserving Faith</span>
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-8 md:mb-12 text-emerald-100 leading-relaxed px-4">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mb-6 sm:mb-8 md:mb-12 text-emerald-100 leading-relaxed max-w-4xl mx-auto">
             Empowering the next generation of Ulama and preserving Islamic heritage through authentic Sunni education.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12 max-w-4xl mx-auto">
-            <div className="bg-white/10 backdrop-blur rounded-lg p-4 md:p-6 hover-lift">
-              <BookOpen className="w-6 h-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
-              <h3 className="font-semibold text-base md:text-lg mb-1 md:mb-2">Islamic Education</h3>
-              <p className="text-sm text-emerald-200">Traditional Sunni-style Ilm</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 md:mb-12 max-w-4xl mx-auto">
+            <div className="bg-white/10 backdrop-blur rounded-lg p-3 sm:p-4 md:p-6 hover-lift">
+              <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
+              <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-1 md:mb-2">Islamic Education</h3>
+              <p className="text-xs sm:text-sm text-emerald-200">Traditional Sunni-style Ilm</p>
             </div>
-            <div className="bg-white/10 backdrop-blur rounded-lg p-4 md:p-6 hover-lift">
-              <ScrollText className="w-6 h-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
-              <h3 className="font-semibold text-base md:text-lg mb-1 md:mb-2">Fatwa Service</h3>
-              <p className="text-sm text-emerald-200">Ask your daily Fiqh questions</p>
+            <div className="bg-white/10 backdrop-blur rounded-lg p-3 sm:p-4 md:p-6 hover-lift">
+              <ScrollText className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
+              <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-1 md:mb-2">Fatwa Service</h3>
+              <p className="text-xs sm:text-sm text-emerald-200">Ask your daily Fiqh questions</p>
             </div>
-            <div className="bg-white/10 backdrop-blur rounded-lg p-4 md:p-6 hover-lift">
-              <HandHeart className="w-6 h-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
-              <h3 className="font-semibold text-base md:text-lg mb-1 md:mb-2">Zakat/Sadaqah</h3>
-              <p className="text-sm text-emerald-200">Spend in the path of Allah</p>
+            <div className="bg-white/10 backdrop-blur rounded-lg p-3 sm:p-4 md:p-6 hover-lift sm:col-span-2 md:col-span-1">
+              <HandHeart className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
+              <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-1 md:mb-2">Zakat/Sadaqah</h3>
+              <p className="text-xs sm:text-sm text-emerald-200">Spend in the path of Allah</p>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center px-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center max-w-md sm:max-w-none mx-auto">
             <Button
               size="lg"
-              className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-6 md:px-10 py-3 md:py-4 text-base md:text-lg font-semibold shadow-2xl hover-lift"
+              className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-6 md:px-10 py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold shadow-2xl hover-lift h-12 sm:h-auto"
             >
-              <HandHeart className="w-5 h-5 md:w-6 md:h-6 mr-2 md:mr-3" />
+              <HandHeart className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-2 md:mr-3" />
               Donate Now
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-emerald-800 px-6 md:px-10 py-3 md:py-4 text-base md:text-lg font-semibold bg-transparent hover-lift"
+              className="border-2 border-white text-white hover:bg-white hover:text-emerald-800 px-6 md:px-10 py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold bg-transparent hover-lift h-12 sm:h-auto"
             >
               Learn More
             </Button>

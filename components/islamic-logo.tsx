@@ -8,7 +8,7 @@ export function IslamicLogo({ size = "large" }: { size?: "small" | "large" }) {
   return (
     <div className={`relative ${logoSize} hover:scale-105 transition-transform duration-300 flex-shrink-0`}>
       <Image
-        src="/images/new-logo.png"
+        src="/images/darul-uloom-authentic-logo.png"
         alt="Darul Uloom Gulshane Qadriya Chishtiya Roon Logo"
         fill
         className="object-contain"

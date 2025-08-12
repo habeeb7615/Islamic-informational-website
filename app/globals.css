@@ -227,5 +227,142 @@ html {
   gap: 1.5rem;
 }
 
+/* Enhanced mobile responsiveness and touch interactions */
 @media (max-width: 640px) {
+  .floating-donate {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Better touch targets for mobile */
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Improved mobile typography */
+  h1 {
+    line-height: 1.2;
+  }
+
+  h2,
+  h3 {
+    line-height: 1.3;
+  }
+
+  p {
+    line-height: 1.6;
+  }
+}
+
+/* Remove tap highlight on mobile for better UX */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection for content areas */
+p,
+span,
+div[class*="text"],
+.selectable {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Enhanced mobile menu animations */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.mobile-menu-enter {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.mobile-menu-exit {
+  animation: slideOutRight 0.3s ease-in;
+}
+
+/* Better mobile viewport handling */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll; /* Fixed backgrounds can cause issues on mobile */
+  }
+
+  /* Ensure proper spacing on mobile */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Better mobile card spacing */
+  .card-peaceful {
+    margin-bottom: 1rem;
+  }
+
+  /* Improved mobile button sizing */
+  .btn-mobile {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+  }
+}
+
+/* Tablet-specific optimizations */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .floating-donate {
+    bottom: 25px;
+    right: 25px;
+  }
+}
+
+/* Enhanced accessibility for mobile */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up,
+  .hover-lift,
+  .mobile-menu-enter,
+  .mobile-menu-exit {
+    animation: none;
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
