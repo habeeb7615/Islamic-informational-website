@@ -343,12 +343,25 @@ export default function GalleryPage() {
 
       {/* Gallery Content */}
       <main className="pt-16 md:pt-20">
-        {/* Hero Section - Enhanced for Mobile */}
-        <section className="py-12 md:py-16 bg-gradient-to-r from-emerald-800 via-emerald-700 to-turquoise-700 text-white">
-          <div className="container mx-auto px-4">
-            <div className="text-center">
-              <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6">Our Gallery</h1>
-              <p className="text-lg md:text-xl lg:text-2xl text-emerald-100 max-w-3xl mx-auto px-4">
+        {/* Hero Section - Enhanced with Background Image */}
+        <section className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center overflow-hidden">
+          {/* Background Image */}
+          <Image
+            src="/images/gallery-hero-gathering.jpg"
+            alt="Darul Uloom Students and Faculty Gathering"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/70 via-emerald-800/60 to-emerald-900/80"></div>
+
+          {/* Content */}
+          <div className="relative z-10 container mx-auto px-4">
+            <div className="text-center text-white">
+              <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 drop-shadow-lg">Our Gallery</h1>
+              <p className="text-lg md:text-xl lg:text-2xl text-emerald-100 max-w-3xl mx-auto px-4 drop-shadow-md leading-relaxed">
                 Witness the beauty of Islamic education and community spirit through authentic moments from our Darul
                 Uloom
               </p>
