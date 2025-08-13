@@ -11,13 +11,10 @@ import {
   MapPin,
   Star,
   HandHeart,
-  ScrollText,
   UserCheck,
   Calendar,
   Clock,
   Award,
-  Globe,
-  Share2,
   Facebook,
   Instagram,
   Youtube,
@@ -99,7 +96,7 @@ export default function IslamicWebsite() {
         </div>
       </header>
 
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/darul-uloom-authentic-gathering.jpg"
@@ -111,7 +108,7 @@ export default function IslamicWebsite() {
           <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/60 via-emerald-800/50 to-emerald-900/70 sm:from-emerald-900/70 sm:via-emerald-800/60 sm:to-emerald-900/80"></div>
         </div>
 
-        <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-6xl mx-auto fade-in-up">
+        <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-6xl mx-auto fade-in-up py-8 sm:py-0">
           <div className="mb-4 sm:mb-6 md:mb-8">
             <Star className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 text-yellow-400 mx-auto mb-3 sm:mb-4 md:mb-6 animate-pulse" />
           </div>
@@ -124,40 +121,17 @@ export default function IslamicWebsite() {
             Empowering the next generation of Ulama and preserving Islamic heritage through authentic Sunni education.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 md:mb-12 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-8 md:mb-12 max-w-2xl mx-auto mt-6 sm:mt-0">
             <div className="bg-white/10 backdrop-blur rounded-lg p-3 sm:p-4 md:p-6 hover-lift">
               <BookOpen className="w-5 h-5 sm:w-6 sm:w-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
               <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-1 md:mb-2">Islamic Education</h3>
               <p className="text-xs sm:text-sm text-emerald-200">Traditional Sunni-style Ilm</p>
             </div>
             <div className="bg-white/10 backdrop-blur rounded-lg p-3 sm:p-4 md:p-6 hover-lift">
-              <ScrollText className="w-5 h-5 sm:w-6 sm:w-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
-              <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-1 md:mb-2">Fatwa Service</h3>
-              <p className="text-xs sm:text-sm text-emerald-200">Ask your daily Fiqh questions</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur rounded-lg p-3 sm:p-4 md:p-6 hover-lift sm:col-span-2 md:col-span-1">
               <HandHeart className="w-5 h-5 sm:w-6 sm:w-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
               <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-1 md:mb-2">Zakat/Sadaqah</h3>
               <p className="text-xs sm:text-sm text-emerald-200">Spend in the path of Allah</p>
             </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center max-w-md sm:max-w-none mx-auto">
-            <Button
-              onClick={scrollToDonation}
-              size="lg"
-              className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-6 md:px-10 py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold shadow-2xl hover-lift h-12 sm:h-auto"
-            >
-              <HandHeart className="w-4 h-4 sm:w-5 sm:w-5 md:w-6 md:h-6 mr-2 md:mr-3" />
-              Donate Now
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-emerald-800 px-6 md:px-10 py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold bg-transparent hover-lift h-12 sm:h-auto"
-            >
-              Learn More
-            </Button>
           </div>
         </div>
       </section>
@@ -300,7 +274,7 @@ export default function IslamicWebsite() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
             {[
               {
                 icon: BookOpen,
@@ -308,13 +282,6 @@ export default function IslamicWebsite() {
                 description:
                   "Complete Hifz program with Tajweed, Tafseer, and authentic Hadith studies following traditional methodology.",
                 color: "from-emerald-500 to-emerald-600",
-              },
-              {
-                icon: ScrollText,
-                title: "Fatwa Service",
-                description:
-                  "Expert religious guidance on contemporary issues based on Qur'an, Sunnah, and classical Fiqh principles.",
-                color: "from-turquoise-500 to-turquoise-600",
               },
               {
                 icon: UserCheck,
@@ -648,9 +615,9 @@ export default function IslamicWebsite() {
       {/* Footer - Enhanced for Mobile */}
       <footer className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-turquoise-800 text-white py-12 md:py-20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16">
-            <div className="md:col-span-2">
-              <div className="flex items-center space-x-3 md:space-x-4 mb-6 md:mb-8">
+          <div className="mb-12 md:mb-16">
+            <div className="max-w-2xl mx-auto text-center">
+              <div className="flex items-center justify-center space-x-3 md:space-x-4 mb-6 md:mb-8">
                 <IslamicLogo size="large" />
                 <div>
                   <h3 className="text-xl md:text-2xl font-bold">Darul Uloom</h3>
@@ -661,7 +628,7 @@ export default function IslamicWebsite() {
                 Dedicated to preserving authentic Islamic knowledge and nurturing the spiritual growth of our Ummah
                 through traditional Sunni education and contemporary guidance.
               </p>
-              <div className="flex flex-wrap gap-2 md:gap-4">
+              <div className="flex flex-wrap justify-center gap-2 md:gap-4">
                 <Button
                   size="sm"
                   variant="outline"
@@ -686,88 +653,6 @@ export default function IslamicWebsite() {
                   <Facebook className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
                   Facebook
                 </Button>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-lg md:text-xl font-semibold mb-4 md:mb-6">Quick Links</h4>
-              <div className="space-y-2 md:space-y-3">
-                {[
-                  "About Us",
-                  "Admission Process",
-                  "Course Curriculum",
-                  "Fatwa Service",
-                  "Donation Portal",
-                  "Alumni Network",
-                ].map((link) => (
-                  <Link
-                    key={link}
-                    href="#"
-                    className="block text-emerald-200 hover:text-yellow-300 transition-colors text-sm md:text-base"
-                  >
-                    {link}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-lg md:text-xl font-semibold mb-4 md:mb-6">Our Services</h4>
-              <div className="space-y-2 md:space-y-3">
-                {[
-                  "Hifz-ul-Quran",
-                  "Alim Course",
-                  "Tajweed Classes",
-                  "Islamic Counseling",
-                  "Marriage Guidance",
-                  "Business Ethics",
-                ].map((service) => (
-                  <Link
-                    key={service}
-                    href="#"
-                    className="block text-emerald-200 hover:text-yellow-300 transition-colors text-sm md:text-base"
-                  >
-                    {service}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-emerald-700 pt-8 md:pt-12">
-            <div className="text-center">
-              <div className="bg-emerald-800/50 rounded-2xl p-6 md:p-8 mb-6 md:mb-8 max-w-4xl mx-auto">
-                <p className="text-emerald-100 mb-3 md:mb-4 italic text-lg md:text-xl leading-relaxed">
-                  "مَن يُقْرِضُ اللَّهَ قَرْضًا حَسَنًا فَيُضَاعِفَهُ لَهُ أَضْعَافًا كَثِيرَةً"
-                </p>
-                <p className="text-yellow-300 text-base md:text-lg font-semibold mb-2">
-                  "Who is it that will lend Allah a good loan which Allah will multiply for him many times over?"
-                </p>
-                <p className="text-emerald-300 font-semibold text-sm md:text-base">- Surah Al-Baqarah 2:245</p>
-              </div>
-
-              <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                <p className="text-emerald-300 text-sm md:text-base">
-                  © 2024 Darul Uloom Gulshane Qadriya Chishtiya Roon. All rights reserved.
-                </p>
-                <div className="flex items-center space-x-2 md:space-x-4">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="text-emerald-200 hover:text-yellow-300 text-xs md:text-sm"
-                  >
-                    <Share2 className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
-                    Share
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="text-emerald-200 hover:text-yellow-300 text-xs md:text-sm"
-                  >
-                    <Globe className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
-                    العربية
-                  </Button>
-                </div>
               </div>
             </div>
           </div>

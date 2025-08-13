@@ -65,7 +65,6 @@ export function ContactForm() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="admission">Admission Inquiry</SelectItem>
-                  <SelectItem value="fatwa">Fatwa Request</SelectItem>
                   <SelectItem value="donation">Donation Information</SelectItem>
                   <SelectItem value="general">General Question</SelectItem>
                 </SelectContent>
