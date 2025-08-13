@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card"
 import { ExternalLink, X } from "lucide-react"
 import { IslamicLogo } from "@/components/islamic-logo"
 import { MobileMenu } from "@/components/mobile-menu"
+import { Youtube, Instagram, Facebook } from "lucide-react"
 
 const galleryImages = [
   {
@@ -454,6 +455,53 @@ export default function GalleryPage() {
           </div>
         </div>
       )}
+
+      {/* Footer Section */}
+      <footer className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-turquoise-800 text-white py-12 md:py-20">
+        <div className="container mx-auto px-4">
+          <div className="mb-12 md:mb-16">
+            <div className="max-w-2xl mx-auto text-center">
+              <div className="flex items-center justify-center space-x-3 md:space-x-4 mb-6 md:mb-8">
+                <IslamicLogo size="large" />
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold">Darul Uloom</h3>
+                  <p className="text-emerald-200 text-sm md:text-base">Gulshane Qadriya Chishtiya Roon</p>
+                </div>
+              </div>
+              <p className="text-emerald-200 leading-relaxed mb-4 md:mb-6 text-base md:text-lg">
+                Dedicated to preserving authentic Islamic knowledge and nurturing the spiritual growth of our Ummah
+                through traditional Sunni education and contemporary guidance.
+              </p>
+              <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="border-emerald-400 text-emerald-200 hover:bg-emerald-700 bg-transparent text-xs md:text-sm"
+                >
+                  <Youtube className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+                  YouTube
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="border-emerald-400 text-emerald-200 hover:bg-emerald-700 bg-transparent text-xs md:text-sm"
+                >
+                  <Instagram className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+                  Instagram
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="border-emerald-400 text-emerald-200 hover:bg-emerald-700 bg-transparent text-xs md:text-sm"
+                >
+                  <Facebook className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+                  Facebook
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
