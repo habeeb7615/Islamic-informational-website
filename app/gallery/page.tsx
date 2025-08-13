@@ -304,9 +304,11 @@ export default function GalleryPage() {
               <IslamicLogo size="small" />
               <div className={`transition-colors duration-300 ${isScrolled ? "text-emerald-800" : "text-white"}`}>
                 <h1 className="text-lg md:text-xl font-bold">Darul Uloom</h1>
-                {!isScrolled && (
-                  <p className="text-xs text-emerald-200 hidden sm:block">Gulshane Qadriya Chishtiya Roon</p>
-                )}
+                <p
+                  className={`text-xs transition-colors duration-300 ${isScrolled ? "text-emerald-800" : "text-emerald-200"}`}
+                >
+                  Gulshane Qadriya Chishtiya Roon
+                </p>
               </div>
             </Link>
 

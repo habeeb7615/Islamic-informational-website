@@ -64,9 +64,11 @@ export default function IslamicWebsite() {
               <IslamicLogo size="small" />
               <div className={`transition-colors duration-300 ${isScrolled ? "text-emerald-800" : "text-white"}`}>
                 <h1 className="text-base sm:text-lg md:text-xl font-bold">Darul Uloom Roon</h1>
-                {!isScrolled && (
-                  <p className="text-xs text-emerald-200 hidden sm:block">Gulshane Qadriya Chishtiya</p>
-                )}
+                <p
+                  className={`text-xs transition-colors duration-300 ${isScrolled ? "text-emerald-800" : "text-emerald-200"}`}
+                >
+                  Gulshane Qadriya Chishtiya
+                </p>
               </div>
             </Link>
 
@@ -103,10 +105,10 @@ export default function IslamicWebsite() {
             src="/images/darul-uloom-authentic-gathering.jpg"
             alt="Darul Uloom Students and Faculty Gathering"
             fill
-            className="object-cover"
+            className="object-cover object-center sm:object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/70 via-emerald-800/60 to-emerald-900/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/60 via-emerald-800/50 to-emerald-900/70 sm:from-emerald-900/70 sm:via-emerald-800/60 sm:to-emerald-900/80"></div>
         </div>
 
         <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-6xl mx-auto fade-in-up">
@@ -124,28 +126,29 @@ export default function IslamicWebsite() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 md:mb-12 max-w-4xl mx-auto">
             <div className="bg-white/10 backdrop-blur rounded-lg p-3 sm:p-4 md:p-6 hover-lift">
-              <BookOpen className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
+              <BookOpen className="w-5 h-5 sm:w-6 sm:w-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
               <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-1 md:mb-2">Islamic Education</h3>
               <p className="text-xs sm:text-sm text-emerald-200">Traditional Sunni-style Ilm</p>
             </div>
             <div className="bg-white/10 backdrop-blur rounded-lg p-3 sm:p-4 md:p-6 hover-lift">
-              <ScrollText className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
+              <ScrollText className="w-5 h-5 sm:w-6 sm:w-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
               <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-1 md:mb-2">Fatwa Service</h3>
               <p className="text-xs sm:text-sm text-emerald-200">Ask your daily Fiqh questions</p>
             </div>
             <div className="bg-white/10 backdrop-blur rounded-lg p-3 sm:p-4 md:p-6 hover-lift sm:col-span-2 md:col-span-1">
-              <HandHeart className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
+              <HandHeart className="w-5 h-5 sm:w-6 sm:w-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
               <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-1 md:mb-2">Zakat/Sadaqah</h3>
               <p className="text-xs sm:text-sm text-emerald-200">Spend in the path of Allah</p>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center max-w-md sm:max-w-none mx-auto">
-            <Button onClick={scrollToDonation}
+            <Button
+              onClick={scrollToDonation}
               size="lg"
               className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-6 md:px-10 py-3 md:py-4 text-sm sm:text-base md:text-lg font-semibold shadow-2xl hover-lift h-12 sm:h-auto"
             >
-              <HandHeart className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 mr-2 md:mr-3" />
+              <HandHeart className="w-4 h-4 sm:w-5 sm:w-5 md:w-6 md:h-6 mr-2 md:mr-3" />
               Donate Now
             </Button>
             <Button
