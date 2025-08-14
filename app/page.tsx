@@ -718,17 +718,7 @@ export default function IslamicWebsite() {
           <p className="text-lg font-semibold mb-2">
             © {new Date().getFullYear()} Darul Uloom Gulshane Qadriya Chishtiya Roon
           </p>
-          <p className="text-sm">
-            Website Donated & Developed with ❤️ by{" "}
-            <Link
-              href="https://habeebsaiyyad.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline decoration-wavy decoration-yellow-300 hover:text-yellow-300 transition-colors duration-300 font-medium"
-            >
-              Habib Saiyyad
-            </Link>
-          </p>
+          <p className="text-sm">Website Donated by Anardeen Saiyyad Bhatnokha</p>
         </div>
       </footer>
     </div>

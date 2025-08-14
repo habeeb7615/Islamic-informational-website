@@ -1,11 +1,13 @@
 "use client"
 
+import type React from "react"
+
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { ExternalLink, X } from "lucide-react"
+import { ExternalLink, X, ChevronLeft, ChevronRight } from "lucide-react"
 import { IslamicLogo } from "@/components/islamic-logo"
 import { MobileMenu } from "@/components/mobile-menu"
 import { Youtube, Instagram, Facebook } from "lucide-react"
@@ -273,8 +275,11 @@ const galleryImages = [
 
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<(typeof galleryImages)[0] | null>(null)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [filter, setFilter] = useState("All")
   const [isScrolled, setIsScrolled] = useState(false)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
 
   const categories = ["All", "Education", "Events", "Worship", "Daily Life", "Campus", "Faculty"]
 
@@ -289,9 +294,67 @@ export default function GalleryPage() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (!selectedImage) return
+
+      if (e.key === "ArrowLeft") {
+        navigateImage("prev")
+      } else if (e.key === "ArrowRight") {
+        navigateImage("next")
+      } else if (e.key === "Escape") {
+        setSelectedImage(null)
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyPress)
+    return () => window.removeEventListener("keydown", handleKeyPress)
+  }, [selectedImage])
+
+  const openLightbox = (image: (typeof galleryImages)[0], index: number) => {
+    setSelectedImage(image)
+    setCurrentImageIndex(index)
+  }
+
+  const navigateImage = (direction: "prev" | "next") => {
+    const currentIndex = filteredImages.findIndex((img) => img.src === selectedImage?.src)
+    let newIndex
+
+    if (direction === "prev") {
+      newIndex = currentIndex > 0 ? currentIndex - 1 : filteredImages.length - 1
+    } else {
+      newIndex = currentIndex < filteredImages.length - 1 ? currentIndex + 1 : 0
+    }
+
+    setSelectedImage(filteredImages[newIndex])
+    setCurrentImageIndex(newIndex)
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe) {
+      navigateImage("next")
+    } else if (isRightSwipe) {
+      navigateImage("prev")
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-turquoise-50 font-inter">
-      {/* Enhanced Header with Mobile Menu */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
@@ -313,7 +376,6 @@ export default function GalleryPage() {
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
             <nav className="hidden lg:flex space-x-6">
               {["Home", "About", "Our Courses", "Gallery", "Donation", "Contact"].map((item) => (
                 <Link
@@ -335,17 +397,13 @@ export default function GalleryPage() {
               ))}
             </nav>
 
-            {/* Mobile Menu */}
             <MobileMenu isScrolled={isScrolled} />
           </div>
         </div>
       </header>
 
-      {/* Gallery Content */}
       <main className="pt-16 md:pt-20">
-        {/* Hero Section - Enhanced with Background Image */}
         <section className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center overflow-hidden">
-          {/* Background Image */}
           <Image
             src="/images/gallery-hero-gathering.jpg"
             alt="Darul Uloom Students and Faculty Gathering"
@@ -354,10 +412,8 @@ export default function GalleryPage() {
             priority
           />
 
-          {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/70 via-emerald-800/60 to-emerald-900/80"></div>
 
-          {/* Content */}
           <div className="relative z-10 container mx-auto px-4">
             <div className="text-center text-white">
               <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 drop-shadow-lg">Our Gallery</h1>
@@ -369,7 +425,6 @@ export default function GalleryPage() {
           </div>
         </section>
 
-        {/* Filter Tabs - Enhanced for Mobile */}
         <section className="py-6 md:py-8 bg-white shadow-sm">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center gap-2">
@@ -392,7 +447,6 @@ export default function GalleryPage() {
           </div>
         </section>
 
-        {/* Gallery Grid - Enhanced for Mobile */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
@@ -400,7 +454,7 @@ export default function GalleryPage() {
                 <Card
                   key={index}
                   className="group overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white border-emerald-100"
-                  onClick={() => setSelectedImage(image)}
+                  onClick={() => openLightbox(image, index)}
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
@@ -437,51 +491,81 @@ export default function GalleryPage() {
         </section>
       </main>
 
-      {/* Enhanced Lightbox Modal for Mobile */}
       {selectedImage && (
-        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4">
-          <div className="relative max-w-4xl max-h-[90vh] w-full">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setSelectedImage(null)}
-              className="absolute -top-8 md:-top-12 right-0 text-white hover:text-gray-300 hover:bg-white/10"
-            >
-              <X className="w-5 h-5 md:w-6 md:h-6" />
-            </Button>
+        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-2 sm:p-4">
+          <div className="relative w-full h-full max-w-6xl flex flex-col justify-center">
+            <div className="relative flex-1 flex items-center justify-center">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 text-white hover:text-gray-300 hover:bg-white/20 z-20 bg-black/50 rounded-full p-2"
+              >
+                <X className="w-4 h-4 sm:w-5 sm:h-5" />
+              </Button>
 
-            <div className="relative aspect-[4/3] w-full">
-              <Image
-                src={selectedImage.src || "/placeholder.svg"}
-                alt={selectedImage.alt}
-                fill
-                className="object-contain rounded-lg"
-              />
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigateImage("prev")}
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 hover:bg-white/20 z-20 bg-black/50 rounded-full p-2"
+              >
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              </Button>
+
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigateImage("next")}
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 hover:bg-white/20 z-20 bg-black/50 rounded-full p-2"
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              </Button>
+
+              <div
+                className="relative w-full h-full max-h-[70vh] sm:max-h-[80vh]"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                <Image
+                  src={selectedImage.src || "/placeholder.svg"}
+                  alt={selectedImage.alt}
+                  fill
+                  className="object-contain rounded-lg"
+                />
+              </div>
             </div>
 
-            <div className="mt-3 md:mt-4 text-center">
-              <h3 className="text-white text-lg md:text-xl font-semibold mb-2">{selectedImage.title}</h3>
-              <span className="text-emerald-300 text-sm px-3 py-1 bg-emerald-800/50 rounded-full">
-                {selectedImage.category}
-              </span>
+            <div className="mt-3 sm:mt-4 text-center px-4 pb-4">
+              <h3 className="text-white text-base sm:text-lg md:text-xl font-semibold mb-2 line-clamp-2">
+                {selectedImage.title}
+              </h3>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+                <span className="text-emerald-300 text-xs sm:text-sm px-2 sm:px-3 py-1 bg-emerald-800/50 rounded-full">
+                  {selectedImage.category}
+                </span>
+                <span className="text-gray-400 text-xs sm:text-sm">
+                  {filteredImages.findIndex((img) => img.src === selectedImage.src) + 1} of {filteredImages.length}
+                </span>
+              </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Footer Section */}
-      <footer className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-turquoise-800 text-white py-12 md:py-20">
+      <footer className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-turquoise-800 text-white py-8 md:py-12">
         <div className="container mx-auto px-4">
-          <div className="mb-12 md:mb-16">
+          <div className="mb-8 md:mb-10">
             <div className="max-w-2xl mx-auto text-center">
-              <div className="flex items-center justify-center space-x-3 md:space-x-4 mb-6 md:mb-8">
+              <div className="flex items-center justify-center space-x-3 md:space-x-4 mb-4 md:mb-6">
                 <IslamicLogo size="large" />
                 <div>
                   <h3 className="text-xl md:text-2xl font-bold">Darul Uloom</h3>
                   <p className="text-emerald-200 text-sm md:text-base">Gulshane Qadriya Chishtiya Roon</p>
                 </div>
               </div>
-              <p className="text-emerald-200 leading-relaxed mb-4 md:mb-6 text-base md:text-lg">
+              <p className="text-emerald-200 leading-relaxed mb-4 md:mb-5 text-base md:text-lg">
                 Dedicated to preserving authentic Islamic knowledge and nurturing the spiritual growth of our Ummah
                 through traditional Sunni education and contemporary guidance.
               </p>
@@ -513,6 +597,15 @@ export default function GalleryPage() {
               </div>
             </div>
           </div>
+        </div>
+      </footer>
+
+      <footer className="bg-gradient-to-r from-emerald-700 to-emerald-500 text-white py-6">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-lg font-semibold mb-2">
+            © {new Date().getFullYear()} Darul Uloom Gulshane Qadriya Chishtiya Roon
+          </p>
+          <p className="text-sm">Website Donated by Anardeen Saiyyad Bhatnokha</p>
         </div>
       </footer>
     </div>
