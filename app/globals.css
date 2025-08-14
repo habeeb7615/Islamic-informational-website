@@ -173,9 +173,9 @@
 .floating-donate {
   position: fixed;
   bottom: 30px;
-  right: 30px;
+  right: 10px;
   z-index: 1000;
-  animation: pulse 2s infinite;
+  animation: pulse .7s infinite;
 }
 
 @keyframes fadeInUp {
@@ -230,8 +230,8 @@ html {
 /* Enhanced mobile responsiveness and touch interactions */
 @media (max-width: 640px) {
   .floating-donate {
-    bottom: 20px;
-    right: 20px;
+    bottom: 40px;
+    right: 10px;
   }
 
   .gallery-grid {
