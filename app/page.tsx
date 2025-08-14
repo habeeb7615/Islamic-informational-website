@@ -121,7 +121,7 @@ export default function IslamicWebsite() {
             Empowering the next generation of Ulama and preserving Islamic heritage through authentic Sunni education.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-8 md:mb-12 max-w-2xl mx-auto mt-6 sm:mt-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-8 md:mb-12 max-w-2xl mx-auto mt-20 sm:mt-0">
             <div className="bg-white/10 backdrop-blur rounded-lg p-3 sm:p-4 md:p-6 hover-lift">
               <BookOpen className="w-5 h-5 sm:w-6 sm:w-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
               <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-1 md:mb-2">Islamic Education</h3>
