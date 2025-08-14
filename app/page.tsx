@@ -109,19 +109,21 @@ export default function IslamicWebsite() {
         </div>
 
         <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-6xl mx-auto fade-in-up py-8 sm:py-0">
-          <div className="mb-4 sm:mb-6 md:mb-8">
-            <Star className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 text-yellow-400 mx-auto mb-3 sm:mb-4 md:mb-6 animate-pulse" />
+          <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-28">
+            <div className="mb-4 sm:mb-6 md:mb-8">
+              <Star className="w-6 h-6 sm:w-8 sm:h-8 md:w-12 md:h-12 text-yellow-400 mx-auto mb-3 sm:mb-4 md:mb-6 animate-pulse" />
+            </div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold mb-4 sm:mb-6 md:mb-8 leading-tight">
+              Nurturing Knowledge,
+              <br />
+              <span className="text-yellow-300">Preserving Faith</span>
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mb-6 sm:mb-8 md:mb-12 text-emerald-100 leading-relaxed max-w-4xl mx-auto">
+              Empowering the next generation of Ulama and preserving Islamic heritage through authentic Sunni education.
+            </p>
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-bold mb-4 sm:mb-6 md:mb-8 leading-tight">
-            Nurturing Knowledge,
-            <br />
-            <span className="text-yellow-300">Preserving Faith</span>
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl mb-6 sm:mb-8 md:mb-12 text-emerald-100 leading-relaxed max-w-4xl mx-auto">
-            Empowering the next generation of Ulama and preserving Islamic heritage through authentic Sunni education.
-          </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-8 md:mb-12 max-w-2xl mx-auto mt-60 sm:mt-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-8 md:mb-12 max-w-2xl mx-auto mt-24 sm:mt-0">
             <div className="bg-white/10 backdrop-blur rounded-lg p-3 sm:p-4 md:p-6 hover-lift">
               <BookOpen className="w-5 h-5 sm:w-6 sm:w-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
               <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-1 md:mb-2">Islamic Education</h3>
@@ -149,6 +151,56 @@ export default function IslamicWebsite() {
             </p>
           </div>
 
+          <div className="mb-16 md:mb-24">
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-xl hover-lift border border-emerald-200">
+              <div className="max-w-4xl mx-auto">
+                <p
+                  className="text-base md:text-lg text-gray-800 leading-relaxed mb-6 text-justify"
+                  style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
+                >
+                  <strong className="text-emerald-800">अल्हम्दुलिल्लाह!</strong> दारुल उलूम गुलशन-ए-क़ादरिया चिश्तिया रून सन{" "}
+                  <strong className="text-emerald-800">2010</strong> से दीन और सुन्नियत की ख़िदमत अंजाम दे रहा है। इस मुबारक
+                  इदारे में तक़रीबन <strong className="text-emerald-800">100 से ज़्यादा बच्चे</strong> दीनी व दुनियावी तालीम हासिल
+                  कर रहे हैं और बेहतरीन असातिज़ा की निगरानी में उनकी इल्मी, अमली और अख़लाक़ी तरबियत की जाती है।
+                </p>
+
+                <p
+                  className="text-base md:text-lg text-gray-800 leading-relaxed mb-6 text-justify"
+                  style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
+                >
+                  यहाँ बच्चों को न केवल कुरआन-ए-पाक, हदीस शरीफ़ और फ़िक़्ह की तालीम दी जाती है, बल्कि उन्हें दुनियावी तालीम में भी माहिर
+                  बनाया जाता है, ताकि वे आने वाले वक़्त में उम्मत और मुल्क के लिए एक बेहतरीन रहनुमा बन सकें।
+                </p>
+
+                <p
+                  className="text-base md:text-lg text-gray-800 leading-relaxed mb-6 text-justify"
+                  style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
+                >
+                  इदारे का सालाना खर्च तक़रीबन <strong className="text-emerald-800">35 लाख रुपये</strong> है, और हर साल तामीरी
+                  व तन्क़ीही काम जारी रहता है, जिससे बच्चों को बेहतर माहौल और सहूलतें मिल सकें। यह सब काम आपकी तआवुन और दिल खोलकर दी
+                  गई मदद से ही मुमकिन है।
+                </p>
+
+                <p
+                  className="text-base md:text-lg text-gray-800 leading-relaxed mb-6 text-justify"
+                  style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
+                >
+                  लिहाज़ा आप अपनी हैसियत के मुताबिक अपनी{" "}
+                  <strong className="text-emerald-800">ज़कात, सदक़ा, फ़ितरा, इमदाद</strong> वग़ैरह से तआवुन फ़रमाएँ और इस नेक काम
+                  में हिस्सा लेकर सवाब-ए-दारेन हासिल करें।
+                </p>
+
+                <p
+                  className="text-base md:text-lg text-gray-800 leading-relaxed text-justify"
+                  style={{ fontFamily: "system-ui, -apple-system, sans-serif" }}
+                >
+                  <strong className="text-emerald-800">याद रखें,</strong> आपके दी हुई मदद किसी बच्चे के चेहरे पर मुस्कान, उसके इल्मी
+                  सफ़र का ज़रिया और उसकी रोशन मुस्तक़बिल की बुनियाद बन सकती है।
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center mb-12 md:mb-20">
             <div className="fade-in-up order-2 lg:order-1">
               <Image
@@ -160,16 +212,16 @@ export default function IslamicWebsite() {
               />
             </div>
 
-            <div className="space-y-6 md:space-y-8 fade-in-up order-1 lg:order-2">
+            <div className="space-y-6 md:space-y-8 fade-in-up order-1 lg:order-2 flex flex-col justify-center">
               <div>
-                <h3 className="text-2xl md:text-3xl font-bold text-emerald-800 mb-3 md:mb-4">Molana Arbab Badmeri</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-emerald-800 mb-4 md:mb-6">Molana Arbab Badmeri</h3>
                 <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4 md:mb-6">
                   Founded and directed by the esteemed Molana Arbab Badmeri, our Darul Uloom stands as a testament to
                   authentic Islamic scholarship. With decades of experience in Islamic jurisprudence and spiritual
                   guidance, Molana Sahib has dedicated his life to preserving and transmitting the sacred knowledge of
                   Islam.
                 </p>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 md:mb-8">
                   Under his blessed guidance, our institution has grown from humble beginnings to become a recognized
                   center of Islamic learning, producing scholars who serve communities across the region.
                 </p>
