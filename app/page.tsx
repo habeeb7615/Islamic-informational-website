@@ -603,34 +603,36 @@ export default function IslamicWebsite() {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                <Card className="card-peaceful hover-lift border-emerald-200">
-                  <CardContent className="p-4 md:p-6 text-center">
-                    <Phone className="w-6 h-6 md:w-8 md:h-8 text-emerald-600 mx-auto mb-2 md:mb-3" />
-                    <h4 className="font-semibold text-emerald-800 mb-1 md:mb-2 text-sm md:text-base">Call Us</h4>
-                    <p className="text-gray-600 text-xs md:text-sm">+91 98765 43210</p>
-                  </CardContent>
-                </Card>
-
-                <Card className="card-peaceful hover-lift border-emerald-200">
-                  <CardContent className="p-4 md:p-6 text-center">
-                    <Mail className="w-6 h-6 md:w-8 md:h-8 text-emerald-600 mx-auto mb-2 md:mb-3" />
-                    <h4 className="font-semibold text-emerald-800 mb-1 md:mb-2 text-sm md:text-base">Email</h4>
-                    <p className="text-gray-600 text-xs md:text-sm">info@darululoomroon.org</p>
-                  </CardContent>
-                </Card>
-              </div>
+          <div className="mt-12 md:mt-16 fade-in-up">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
+              <Card className="card-peaceful hover-lift border-emerald-200">
+                <CardContent className="p-4 md:p-6 text-center">
+                  <Phone className="w-6 h-6 md:w-8 md:h-8 text-emerald-600 mx-auto mb-2 md:mb-3" />
+                  <h4 className="font-semibold text-emerald-800 mb-1 md:mb-2 text-sm md:text-base">Call Us</h4>
+                  <p className="text-gray-600 text-xs md:text-sm">+91 98765 43210</p>
+                </CardContent>
+              </Card>
 
               <Card className="card-peaceful hover-lift border-emerald-200">
-                <CardHeader>
-                  <CardTitle className="text-emerald-800 flex items-center text-lg md:text-xl">
-                    <Clock className="w-5 h-5 md:w-6 md:h-6 mr-2 md:mr-3 text-yellow-600" />
+                <CardContent className="p-4 md:p-6 text-center">
+                  <Mail className="w-6 h-6 md:w-8 md:h-8 text-emerald-600 mx-auto mb-2 md:mb-3" />
+                  <h4 className="font-semibold text-emerald-800 mb-1 md:mb-2 text-sm md:text-base">Email</h4>
+                  <p className="text-gray-600 text-xs md:text-sm">info@darululoomroon.org</p>
+                </CardContent>
+              </Card>
+
+              <Card className="card-peaceful hover-lift border-emerald-200">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-emerald-800 flex items-center justify-center text-sm md:text-base">
+                    <Clock className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2 text-yellow-600" />
                     Prayer Times & Visiting Hours
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 text-xs md:text-sm">
+                <CardContent className="pt-0">
+                  <div className="space-y-1 text-xs">
                     <div className="flex justify-between">
                       <span className="text-gray-600">Fajr:</span>
                       <span className="font-semibold">5:30 AM</span>
@@ -651,9 +653,9 @@ export default function IslamicWebsite() {
                       <span className="text-gray-600">Isha:</span>
                       <span className="font-semibold">8:00 PM</span>
                     </div>
-                    <hr className="my-3" />
+                    <hr className="my-2" />
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Visiting Hours:</span>
+                      <span className="text-gray-600">Visiting:</span>
                       <span className="font-semibold">9 AM - 5 PM</span>
                     </div>
                   </div>
@@ -665,18 +667,18 @@ export default function IslamicWebsite() {
       </section>
 
       {/* Footer - Enhanced for Mobile */}
-      <footer className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-turquoise-800 text-white py-12 md:py-20">
+      <footer className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-turquoise-800 text-white py-8 md:py-12">
         <div className="container mx-auto px-4">
-          <div className="mb-12 md:mb-16">
+          <div className="mb-8 md:mb-10">
             <div className="max-w-2xl mx-auto text-center">
-              <div className="flex items-center justify-center space-x-3 md:space-x-4 mb-6 md:mb-8">
+              <div className="flex items-center justify-center space-x-3 md:space-x-4 mb-4 md:mb-6">
                 <IslamicLogo size="large" />
                 <div>
                   <h3 className="text-xl md:text-2xl font-bold">Darul Uloom</h3>
                   <p className="text-emerald-200 text-sm md:text-base">Gulshane Qadriya Chishtiya Roon</p>
                 </div>
               </div>
-              <p className="text-emerald-200 leading-relaxed mb-4 md:mb-6 text-base md:text-lg">
+              <p className="text-emerald-200 leading-relaxed mb-4 md:mb-5 text-base md:text-lg">
                 Dedicated to preserving authentic Islamic knowledge and nurturing the spiritual growth of our Ummah
                 through traditional Sunni education and contemporary guidance.
               </p>
@@ -708,6 +710,25 @@ export default function IslamicWebsite() {
               </div>
             </div>
           </div>
+        </div>
+      </footer>
+
+      <footer className="bg-gradient-to-r from-emerald-700 to-emerald-500 text-white py-6">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-lg font-semibold mb-2">
+            © {new Date().getFullYear()} Darul Uloom Gulshane Qadriya Chishtiya Roon
+          </p>
+          <p className="text-sm">
+            Website Donated & Developed with ❤️ by{" "}
+            <Link
+              href="https://habeebsaiyyad.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-wavy decoration-yellow-300 hover:text-yellow-300 transition-colors duration-300 font-medium"
+            >
+              Habib Saiyyad
+            </Link>
+          </p>
         </div>
       </footer>
     </div>
