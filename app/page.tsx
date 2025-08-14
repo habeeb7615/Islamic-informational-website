@@ -60,11 +60,11 @@ export default function IslamicWebsite() {
             <Link href="/" className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
               <IslamicLogo size="small" />
               <div className={`transition-colors duration-300 ${isScrolled ? "text-emerald-800" : "text-white"}`}>
-                <h1 className="text-base sm:text-lg md:text-xl font-bold">Darul Uloom Roon</h1>
+                <h1 className="text-base sm:text-lg md:text-xl font-bold">Darul Uloom</h1>
                 <p
                   className={`text-xs transition-colors duration-300 ${isScrolled ? "text-emerald-800" : "text-emerald-200"}`}
                 >
-                  Gulshane Qadriya Chishtiya
+                  Gulshane Qadriya Chishtiya Roon
                 </p>
               </div>
             </Link>
@@ -121,7 +121,7 @@ export default function IslamicWebsite() {
             Empowering the next generation of Ulama and preserving Islamic heritage through authentic Sunni education.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-8 md:mb-12 max-w-2xl mx-auto mt-20 sm:mt-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-8 md:mb-12 max-w-2xl mx-auto mt-60 sm:mt-0">
             <div className="bg-white/10 backdrop-blur rounded-lg p-3 sm:p-4 md:p-6 hover-lift">
               <BookOpen className="w-5 h-5 sm:w-6 sm:w-6 md:w-8 md:h-8 text-yellow-400 mx-auto mb-2 md:mb-3" />
               <h3 className="font-semibold text-sm sm:text-base md:text-lg mb-1 md:mb-2">Islamic Education</h3>
